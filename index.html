@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/main.js"></script>
+    <title>Gestion de stock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <h1>GESTIÓN DE STOCK TCHSHOP</h1>
+        <form id="formulario-producto">
+            <input class="botonesinput" type="text" id="nombre-producto" placeholder="Nombre del producto" required>
+            <input class="botonesinput" type="number" id="cantidad-producto" placeholder="Cantidad" required min="1">
+            <input class="botonesinput" type="number" id="precio-producto" placeholder="Precio" required min="0" step="0.01">
+            <button type="submit">Agregar Producto</button>
+        </form>
+        <h2>Lista de Productos:</h2>
+        <div id="lista-productos"></div>
+    </main>
+</body>
+</html>

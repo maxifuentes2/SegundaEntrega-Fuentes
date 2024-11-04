@@ -1,0 +1,86 @@
+body {
+    font-family: Urbanist;
+    margin: 20px;
+    background: #5D6184;
+}
+h1 {
+    color: #ffffffda;
+    font-weight: 900;
+}
+
+h2 {
+    color: #ffffffda;
+    text-decoration: underline;
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input {
+    margin-right: 10px;
+    padding: 5px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    color: #000    ;
+    border: solid 2px rgba(128, 128, 128, 0.61);
+}
+
+button {
+    background-color: #28a745;
+    color: #ffffff;
+    border: solid 2px #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.producto {
+    font-weight: 500;
+    border: 1px solid #5e5e5e;
+    background-color: #3C4172;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.producto .info-producto {
+    flex-grow: 1;   
+}
+
+.boton-eliminar, .boton-quitar {
+    background-color: #dc3545;
+    color: white;
+    border: solid 1px #000;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.boton-quitar {
+    background-color: #ffc107;
+}
+
+.boton-eliminar:hover, .boton-quitar:hover {
+    background-color: #771d26;
+}
+
+.cantidad-quitar {
+    margin-left: 10px;
+    width: 50px;
+    border: solid 1px #000;
+}
+.botones-input {
+    border: solid 5px #000;
+}
+
+
