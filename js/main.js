@@ -23,24 +23,36 @@ function inicializarProductos() {
 }
 
 function mostrarProductos() {
+    // obtiene los productos guardados en localStorage, o un array vacío si no existen productos guardados
     const productos = JSON.parse(localStorage.getItem('productos')) || [];
-    listaProductosElemento.innerHTML = ''; // limpia el contenido actual
+    
+    // limpia el contenido actual del elemento de la lista de productos en la interfaz
+    listaProductosElemento.innerHTML = ''; 
 
+    // recorre cada producto en el array productos y su índice
     productos.forEach((producto, index) => {
+        // crea un elemento div que representará la tarjeta de un producto individual
         const card = document.createElement('div');
-        card.classList.add('producto');
+        card.classList.add('producto'); // asigna la clase producto al div
 
+        // inserta el contenido HTML en card mostrando nombre cantidad y precio del producto
         card.innerHTML = `
             <span class="producto-nombre">${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: $${producto.precio.toFixed(2)}</span>
             <div class="acciones">
+                <!-- Campo de entrada para indicar cuántas unidades se quieren quitar (con un mínimo de 1 y un máximo igual a la cantidad del producto) -->
                 <input type="number" class="cantidad-quitar" placeholder="Quitar" min="1" max="${producto.cantidad}">
+                <!-- Botón para quitar la cantidad indicada del producto -->
                 <button class="boton-quitar" data-index="${index}">Quitar</button>
+                <!-- Botón para eliminar el producto completo -->
                 <button class="boton-eliminar" data-index="${index}">Eliminar</button>
             </div>
         `;
+
+        // agrega la tarjeta del producto al elemento de la lista de productos en la interfaz
         listaProductosElemento.appendChild(card); 
     });
 }
+
 
 
 // agrega un producto al almacenamiento y lo muestra en el array
