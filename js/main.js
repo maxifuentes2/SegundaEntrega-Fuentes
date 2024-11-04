@@ -22,49 +22,26 @@ function inicializarProductos() {
     }
 }
 
-// muestra los productos en el array y los agrega al HTML
 function mostrarProductos() {
     const productos = JSON.parse(localStorage.getItem('productos')) || [];
-    listaProductosElemento.innerHTML = '';
-    
+    listaProductosElemento.innerHTML = ''; // limpia el contenido actual
+
     productos.forEach((producto, index) => {
-        const productoElemento = document.createElement('div');
-        productoElemento.classList.add('producto');
-        
-        const nombreElemento = document.createElement('span');
-        nombreElemento.classList.add('producto-nombre');
-        nombreElemento.textContent = `${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: $${producto.precio.toFixed(2)}`;
-        
-        const accionesElemento = document.createElement('div');
-        accionesElemento.classList.add('acciones');
-        
-        const cantidadQuitarInput = document.createElement('input');
-        cantidadQuitarInput.type = 'number';
-        cantidadQuitarInput.classList.add('cantidad-quitar');
-        cantidadQuitarInput.placeholder = 'Quitar';
-        cantidadQuitarInput.min = 1;
-        cantidadQuitarInput.max = producto.cantidad;
-        
-        const botonQuitar = document.createElement('button');
-        botonQuitar.classList.add('boton-quitar');
-        botonQuitar.dataset.index = index;
-        botonQuitar.textContent = 'Quitar';
-        
-        const botonEliminar = document.createElement('button');
-        botonEliminar.classList.add('boton-eliminar');
-        botonEliminar.dataset.index = index;
-        botonEliminar.textContent = 'Eliminar';
-        
-        accionesElemento.appendChild(cantidadQuitarInput);
-        accionesElemento.appendChild(botonQuitar);
-        accionesElemento.appendChild(botonEliminar);
-        
-        productoElemento.appendChild(nombreElemento);
-        productoElemento.appendChild(accionesElemento);
-        
-        listaProductosElemento.appendChild(productoElemento);
+        const card = document.createElement('div');
+        card.classList.add('producto');
+
+        card.innerHTML = `
+            <span class="producto-nombre">${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: $${producto.precio.toFixed(2)}</span>
+            <div class="acciones">
+                <input type="number" class="cantidad-quitar" placeholder="Quitar" min="1" max="${producto.cantidad}">
+                <button class="boton-quitar" data-index="${index}">Quitar</button>
+                <button class="boton-eliminar" data-index="${index}">Eliminar</button>
+            </div>
+        `;
+        listaProductosElemento.appendChild(card); 
     });
 }
+
 
 // agrega un producto al almacenamiento y lo muestra en el array
 function agregarProducto(nombre, cantidad, precio) {
@@ -81,7 +58,7 @@ function agregarProducto(nombre, cantidad, precio) {
     mostrarProductos();
 }
 
-// quita una cantidad especifica de un producto o lo elimina si la cantidad es 0
+// quita una cantidad específica de un producto o lo elimina si la cantidad es 0
 function quitarProducto(index, cantidadQuitar) {
     let productos = JSON.parse(localStorage.getItem('productos')) || [];
     const producto = productos[index];
@@ -96,7 +73,7 @@ function quitarProducto(index, cantidadQuitar) {
     }
 }
 
-// elimina un producto completamente del localStorage
+// elimina un producto completamente del almacenamiento
 function eliminarProducto(index) {
     let productos = JSON.parse(localStorage.getItem('productos')) || [];
     productos.splice(index, 1);
@@ -121,8 +98,8 @@ formularioProducto.addEventListener('submit', (event) => {
 
 // evento para quitar o eliminar productos desde los botones
 listaProductosElemento.addEventListener('click', (event) => {
-    const index = event.target.dataset.index;
     if (event.target.classList.contains('boton-quitar')) {
+        const index = event.target.getAttribute('data-index');
         const cantidadInput = event.target.previousElementSibling;
         const cantidadQuitar = parseInt(cantidadInput.value) || 0;
 
@@ -131,9 +108,11 @@ listaProductosElemento.addEventListener('click', (event) => {
             cantidadInput.value = '';
         }
     } else if (event.target.classList.contains('boton-eliminar')) {
+        const index = event.target.getAttribute('data-index');
         eliminarProducto(index);
     }
 });
 
+// inicializa la aplicación cargando productos iniciales si no hay en localStorage
 inicializarProductos();
 mostrarProductos();
