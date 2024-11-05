@@ -39,11 +39,11 @@ function mostrarProductos() {
         card.innerHTML = `
             <span class="producto-nombre">${producto.nombre} - Cantidad: ${producto.cantidad} - Precio: $${producto.precio.toFixed(2)}</span>
             <div class="acciones">
-                <!-- Campo de entrada para indicar cuántas unidades se quieren quitar (con un mínimo de 1 y un máximo igual a la cantidad del producto) -->
+                <!-- campo de entrada para indicar cuántas unidades se quieren quitar (mínimo de 1 y máximo igual a la cantidad del producto) -->
                 <input type="number" class="cantidad-quitar" placeholder="Quitar" min="1" max="${producto.cantidad}">
-                <!-- Botón para quitar la cantidad indicada del producto -->
+                <!-- botón para quitar la cantidad indicada del producto -->
                 <button class="boton-quitar" data-index="${index}">Quitar</button>
-                <!-- Botón para eliminar el producto completo -->
+                <!-- botón para eliminar el producto completo -->
                 <button class="boton-eliminar" data-index="${index}">Eliminar</button>
             </div>
         `;
